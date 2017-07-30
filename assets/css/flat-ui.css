@@ -1,9 +1,29 @@
-.search {
-  float: right;
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.wrapper {
-  width: 960px;
+.content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.buttons {
+  text-align: center;
+}
+
+#gifs {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn.btn-primary.playerGif {
+  margin-bottom: 3px;
 }
 
 @font-face {
@@ -471,6 +491,7 @@ p {
   font-size: 18px;
   line-height: 1.72222;
   margin: 0 0 15px;
+  text-align: center;
 }
 .lead {
   margin-bottom: 30px;
