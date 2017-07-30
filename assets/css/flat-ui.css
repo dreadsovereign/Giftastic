@@ -2,8 +2,8 @@
   float: right;
 }
 
-#gifs {
-  margin-top: 10px;
+.wrapper {
+  width: 960px;
 }
 
 @font-face {
