@@ -1,29 +1,6 @@
 var topics = ["Tom Brady", "Antonio Brown", "Von Miller", "Julio Jones", "Khalil Mack", "Aaron Rodgers", "Ezekiel Elliot", "Odell Beckham Jr.", "Le'Veon Bell", "Matt Ryan"];
 
-$(".buttons.btn.btn-primary.playerGif").on("click", function() {
 
-var playerGif = $(this).attr("data-person");
-var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + playerGif + "&api_key=dc6zaTOxFJmzC&limit=10";
-
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  })
-  .done(function(response) {
-    console.log(response)
-    var results = response.data;
-    for (var i = 0; i < results.length; i++) {
-      var gifDiv = $("<div class='item'>");
-      var rating = results[i].rating;
-      var p = $("<p>").text("Rating: " + rating);
-      var playerImage = $("<img>");
-      playerImage.attr("src", results[i].images.fixed.height.url);
-      gifDiv.prepend(p);
-      gifDiv.prepend(playerImage);
-      $(".gifs").prepend(gifDiv);
-    }
-  });
-});
 
 function createButtons() {
   $(".buttons").empty();
@@ -34,6 +11,38 @@ function createButtons() {
     a.text(topics[i]);
     $(".buttons").append(a).append(" ");
   }
+
+    $(".playerGif").on("click", function() {
+    $("#gifs").empty();
+
+    var playerGif = $(this).attr("data-person");
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + playerGif + "&api_key=dc6zaTOxFJmzC&limit=10";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
+    .done(function(response) {
+      console.log (response)
+      var results = response.data;
+      
+      for (var i = 0; i < results.length; i++) {
+        var gifDiv = $("<div class='item'>");
+        
+        var rating = results[i].rating;
+        
+        var p = $("<p>").text("Rating: " + rating);
+        
+        var playerImage = $("<img>");
+        playerImage.attr("src", results[i].images.fixed_height.url);
+        
+        gifDiv.prepend(p);
+        gifDiv.prepend(playerImage);
+        
+        $("#gifs").prepend(gifDiv);
+      }
+    });
+  });
 }
 
 $("#submit").on("click", function(event) {
@@ -42,4 +51,5 @@ $("#submit").on("click", function(event) {
   topics.push(player);
   createButtons();
 });
+
 createButtons();
