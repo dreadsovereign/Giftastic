@@ -12,6 +12,7 @@ function createButtons() {
 
     $(".playerGif").on("click", function() {
     $("#gifs").empty();
+    $(".content").css("width", "960px");
 
     var playerGif = $(this).attr("data-person");
     var state = $(this).attr("data-state");
@@ -26,8 +27,8 @@ function createButtons() {
       var results = response.data;
       
       for (var i = 0; i < results.length; i++) {
-        var animateGif = results[i].images.fixed_height.url;
-        var pauseGif = results[i].images.fixed_height_still.url;
+        var animateGif = results[i].images.fixed_width.url;
+        var pauseGif = results[i].images.fixed_width_still.url;
         var gifDiv = $("<div class='item'>");
         
         var rating = results[i].rating;
@@ -35,7 +36,7 @@ function createButtons() {
         var p = $("<p>").text("Rating: " + rating);
         
         var playerImage = $("<img>");
-        playerImage.attr("src", results[i].images.fixed_height.url).attr('data-animated', animateGif).attr('data-paused', pauseGif).attr('src', pauseGif).addClass('playOnHover');;
+        playerImage.attr("src", results[i].images.fixed_width.url).attr('data-animated', animateGif).attr('data-paused', pauseGif).attr('src', pauseGif).addClass('playOnHover');;
         
         gifDiv.prepend(p);
         gifDiv.prepend(playerImage);
